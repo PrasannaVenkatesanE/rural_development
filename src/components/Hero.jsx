@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Star, ShieldCheck, Zap } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../lib/translations';
 
 const Hero = () => {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     const categories = [
         { name: "Precast Concrete Walls", icon: "🧱" },
         { name: "Modular Flooring", icon: "🔲" },
@@ -17,7 +22,7 @@ const Hero = () => {
     return (
         <div className="bg-gray-100 pb-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div className="grid grid-cols-12 gap-6 h-[500px]">
+                <div className="grid grid-cols-12 gap-6 lg:h-[500px]">
 
                     {/* Left Sidebar - Categories (Desktop) */}
                     <div className="hidden lg:col-span-3 lg:flex flex-col bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full">
@@ -55,65 +60,34 @@ const Hero = () => {
                                 Factory Direct
                             </div>
                             <h1 className="text-4xl font-bold mb-4 leading-tight">
-                                Rural Housing Revolution
+                                {t.heroTitle}
                             </h1>
                             <p className="text-gray-200 mb-6 text-sm line-clamp-2">
-                                Source precast walls, modular floors, and decorative finishes directly from manufacturers. Save up to 60% on construction.
+                                {t.heroSubtitle}
                             </p>
                             <Link to="/configurator" className="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-full font-bold text-sm transition-colors inline-flex items-center">
-                                Start Customizing
-                                <ChevronRight size={16} className="ml-2" />
+                                {t.startDesigning}
                             </Link>
                         </div>
+
                     </div>
 
-                    {/* Right Sidebar - Login / Hot Picks */}
+                    {/* Right Sidebar replacement or empty for now as per design */}
                     <div className="hidden lg:col-span-3 lg:flex flex-col gap-6 h-full">
-
-                        {/* User Card */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex-none">
-                            <div className="flex items-center space-x-4 mb-6">
-                                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
-                                    <User size={24} />
-                                </div>
-                                <div>
-                                    <div className="text-xs text-gray-500">Welcome to RuralBuild</div>
-                                    <div className="font-bold text-gray-900">Get Started</div>
-                                </div>
+                        <div className="h-full bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-center items-center text-center">
+                            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 text-orange-600 font-bold text-2xl">
+                                4.9
                             </div>
-                            <div className="grid grid-cols-2 gap-3 mb-4">
-                                <Link to="/login" className="bg-orange-600 hover:bg-orange-700 text-white text-center py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Sign In
-                                </Link>
-                                <Link to="/signup" className="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-center py-2 rounded-lg text-sm font-semibold transition-colors">
-                                    Join Free
-                                </Link>
-                            </div>
-                            <div className="text-xs text-center text-gray-500 border-t border-gray-100 pt-3">
-                                Continue as <span className="text-orange-600 font-medium cursor-pointer">Supplier</span>
-                            </div>
+                            <h3 className="font-bold text-gray-900 text-lg mb-2">Trusted by Villagers</h3>
+                            <p className="text-sm text-gray-500">Over 500+ homes built across Tamil Nadu using our platform.</p>
                         </div>
-
-                        {/* Hot Pick Item */}
-                        <div className="bg-orange-50 p-6 rounded-xl border border-orange-100 flex-1 flex flex-col relative overflow-hidden group hover:border-orange-200 transition-colors cursor-pointer">
-                            <div className="absolute top-0 right-0 bg-orange-200 text-orange-800 text-[10px] font-bold px-2 py-1 rounded-bl-lg">
-                                HOT PICK
+                        <div className="h-full bg-blue-50 rounded-xl shadow-sm border border-blue-100 p-6 flex flex-col justify-center items-center text-center">
+                            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600">
+                                <ShieldCheck size={32} />
                             </div>
-                            <h3 className="font-bold text-gray-900 mb-1">Waterproof Stickers</h3>
-                            <p className="text-xs text-gray-600 mb-4">Trending in Decor</p>
-                            <div className="flex-1 flex items-center justify-center mb-4">
-                                <img
-                                    src="https://images.unsplash.com/photo-1507643179173-61b0453d3ec9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
-                                    alt="Stickers"
-                                    className="rounded-lg shadow-md max-h-32 object-cover transform group-hover:scale-105 transition-transform duration-500"
-                                />
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <span className="text-lg font-bold text-gray-900">₹95</span>
-                                <span className="text-xs text-gray-500 line-through">₹120</span>
-                            </div>
+                            <h3 className="font-bold text-gray-900 text-lg mb-2">Government Approved</h3>
+                            <p className="text-sm text-gray-500">All materials meet PMAY-G standards.</p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -165,20 +139,5 @@ const Hero = () => {
         </div>
     );
 };
-
-// Start: Mock User Icon
-const User = ({ size, className }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={size} height={size}
-        viewBox="0 0 24 24"
-        fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-        className={className}
-    >
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-    </svg>
-);
-// End
 
 export default Hero;

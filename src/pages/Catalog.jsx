@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import { ProductCard } from '../components/ProductCard';
 import { products } from '../lib/data';
 import { Filter, ChevronDown, LayoutGrid, List } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../lib/translations';
 
 const Catalog = () => {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     const [filter, setFilter] = useState('All');
     const categories = ['All', 'Walls', 'Flooring', 'Stickers', 'Roofing', 'Windows', 'Sanitary'];
 
@@ -18,11 +23,11 @@ const Catalog = () => {
                 {/* Breadcrumbs & Header */}
                 <div className="flex justify-between items-center mb-6">
                     <div className="text-sm text-gray-500">
-                        Home / <span className="text-gray-900 font-medium">All Products</span>
+                        {t.home} / <span className="text-gray-900 font-medium">{t.allProducts}</span>
                     </div>
                     <div className="flex items-center space-x-4">
                         <div className="text-sm text-gray-600">
-                            <span className="font-bold text-gray-900">{filteredProducts.length}</span> Products found
+                            <span className="font-bold text-gray-900">{filteredProducts.length}</span> {t.productsFound}
                         </div>
                         <div className="flex border border-gray-300 rounded overflow-hidden bg-white">
                             <button className="p-2 bg-gray-100 text-gray-900"><LayoutGrid size={18} /></button>
@@ -37,7 +42,7 @@ const Catalog = () => {
                     <div className="hidden lg:col-span-3 lg:block space-y-6">
                         <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                             <h3 className="font-bold text-gray-900 mb-4 flex justify-between items-center">
-                                Categories
+                                {t.categories}
                                 <ChevronDown size={16} />
                             </h3>
                             <div className="space-y-2">
@@ -55,7 +60,7 @@ const Catalog = () => {
                         </div>
 
                         <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                            <h3 className="font-bold text-gray-900 mb-4">Supplier Type</h3>
+                            <h3 className="font-bold text-gray-900 mb-4">{t.supplierType}</h3>
                             <div className="space-y-2">
                                 <label className="flex items-center space-x-2 text-sm text-gray-600 cursor-pointer">
                                     <input type="checkbox" className="rounded text-orange-600 focus:ring-orange-500" />

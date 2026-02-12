@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { CartProvider } from './context/CartContext';
+import { LanguageProvider } from './context/LanguageContext';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Configurator from './pages/Configurator';
@@ -14,26 +15,28 @@ import Footer from './components/Footer';
 
 function App() {
     return (
-        <CartProvider>
-            <Router>
-                <div className="min-h-screen bg-slate-50 font-sans text-slate-900 flex flex-col">
-                    <Navbar />
-                    <main className="flex-grow">
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/catalog" element={<Catalog />} />
-                            <Route path="/configurator" element={<Configurator />} />
-                            <Route path="/suppliers" element={<Suppliers />} />
-                            <Route path="/cart" element={<Cart />} />
-                            <Route path="/checkout" element={<Checkout />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/signup" element={<Signup />} />
-                        </Routes>
-                    </main>
-                    <Footer />
-                </div>
-            </Router>
-        </CartProvider>
+        <LanguageProvider>
+            <CartProvider>
+                <Router>
+                    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 flex flex-col">
+                        <Navbar />
+                        <main className="flex-grow">
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/catalog" element={<Catalog />} />
+                                <Route path="/configurator" element={<Configurator />} />
+                                <Route path="/suppliers" element={<Suppliers />} />
+                                <Route path="/cart" element={<Cart />} />
+                                <Route path="/checkout" element={<Checkout />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/signup" element={<Signup />} />
+                            </Routes>
+                        </main>
+                        <Footer />
+                    </div>
+                </Router>
+            </CartProvider>
+        </LanguageProvider>
     );
 }
 
