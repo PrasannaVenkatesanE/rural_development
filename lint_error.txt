@@ -1,0 +1,28 @@
+﻿
+> rural-housing-platform@1.0.0 lint
+> eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0
+
+node.exe : 'eslint' 
+is not recognized as 
+an internal or 
+external command,
+At C:\Program Files\n
+odejs\npm.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ('eslint   
+ ' is not...terna    
+l command,:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+operable program or 
+batch file.

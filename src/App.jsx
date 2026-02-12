@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import TechnicalSpecs from './pages/TechnicalSpecs'; // Import
 import Footer from './components/Footer';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                                 <Route path="/catalog" element={<Catalog />} />
                                 <Route path="/configurator" element={<Configurator />} />
                                 <Route path="/suppliers" element={<Suppliers />} />
+                                <Route path="/specs" element={<TechnicalSpecs />} /> {/* New Route */}
                                 <Route path="/cart" element={<Cart />} />
                                 <Route path="/checkout" element={<Checkout />} />
                                 <Route path="/login" element={<Login />} />

@@ -1,137 +1,88 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Star, ShieldCheck, Zap } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../lib/translations';
+import { Download, Calculator, TrendingDown, Clock, Users, Recycle, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
-    const { language } = useLanguage();
-    const t = translations[language];
 
-    const categories = [
-        { name: "Precast Concrete Walls", icon: "🧱" },
-        { name: "Modular Flooring", icon: "🔲" },
-        { name: "Roofing Solutions", icon: "🏠" },
-        { name: "Wall Stickers & Decor", icon: "🎨" },
-        { name: "Windows & Doors", icon: "🚪" },
-        { name: "Electrical & Plumbing", icon: "💡" },
-        { name: "Sanitary Ware", icon: "🚽" },
-        { name: "Construction Tools", icon: "🛠️" },
+    const fadeUp = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
+    const stats = [
+        { label: "Faster Construction", value: "60%", icon: Clock },
+        { label: "Cost Reduction", value: "30%", icon: TrendingDown },
+        { label: "Less Labor Required", value: "40%", icon: Users },
+        { label: "Lower Material Wastage", value: "25%", icon: Recycle },
     ];
 
     return (
-        <div className="bg-gray-100 pb-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div className="grid grid-cols-12 gap-6 lg:h-[500px]">
-
-                    {/* Left Sidebar - Categories (Desktop) */}
-                    <div className="hidden lg:col-span-3 lg:flex flex-col bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full">
-                        <div className="p-4 bg-gray-50 border-b border-gray-100 font-bold text-gray-800 flex items-center">
-                            <Star size={18} className="mr-2 text-orange-500" />
-                            Categories for you
-                        </div>
-                        <div className="flex-1 overflow-y-auto py-2">
-                            {categories.map((cat, idx) => (
-                                <Link key={idx} to="/catalog" className="flex items-center justify-between px-4 py-3 hover:bg-orange-50 group transition-colors">
-                                    <div className="flex items-center text-gray-600 group-hover:text-orange-600">
-                                        <span className="mr-3 text-lg opacity-80">{cat.icon}</span>
-                                        <span className="text-sm font-medium">{cat.name}</span>
-                                    </div>
-                                    <ChevronRight size={14} className="text-gray-300 group-hover:text-orange-500" />
-                                </Link>
-                            ))}
-                        </div>
-                        <div className="p-4 bg-orange-50 border-t border-orange-100 text-center">
-                            <Link to="/catalog" className="text-xs font-bold text-orange-600 hover:underline">View All Categories</Link>
-                        </div>
-                    </div>
-
-                    {/* Center - Main Hero Slider */}
-                    <div className="col-span-12 lg:col-span-6 flex flex-col h-full rounded-xl overflow-hidden shadow-sm relative group cursor-pointer">
-                        <img
-                            src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-                            alt="Modern Prefab Home"
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-
-                        <div className="absolute bottom-8 left-8 text-white max-w-md">
-                            <div className="bg-orange-600 text-white text-xs font-bold px-2 py-1 inline-block rounded mb-3 uppercase tracking-wider">
-                                Factory Direct
-                            </div>
-                            <h1 className="text-4xl font-bold mb-4 leading-tight">
-                                {t.heroTitle}
-                            </h1>
-                            <p className="text-gray-200 mb-6 text-sm line-clamp-2">
-                                {t.heroSubtitle}
-                            </p>
-                            <Link to="/configurator" className="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-full font-bold text-sm transition-colors inline-flex items-center">
-                                {t.startDesigning}
-                            </Link>
-                        </div>
-
-                    </div>
-
-                    {/* Right Sidebar replacement or empty for now as per design */}
-                    <div className="hidden lg:col-span-3 lg:flex flex-col gap-6 h-full">
-                        <div className="h-full bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-center items-center text-center">
-                            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 text-orange-600 font-bold text-2xl">
-                                4.9
-                            </div>
-                            <h3 className="font-bold text-gray-900 text-lg mb-2">Trusted by Villagers</h3>
-                            <p className="text-sm text-gray-500">Over 500+ homes built across Tamil Nadu using our platform.</p>
-                        </div>
-                        <div className="h-full bg-blue-50 rounded-xl shadow-sm border border-blue-100 p-6 flex flex-col justify-center items-center text-center">
-                            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600">
-                                <ShieldCheck size={32} />
-                            </div>
-                            <h3 className="font-bold text-gray-900 text-lg mb-2">Government Approved</h3>
-                            <p className="text-sm text-gray-500">All materials meet PMAY-G standards.</p>
-                        </div>
-                    </div>
-                </div>
+        <div className="bg-slate-50 relative overflow-hidden">
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-0 z-0">
+                <img
+                    src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+                    alt="Rural Development"
+                    className="w-full h-full object-cover opacity-20"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/70"></div>
             </div>
 
-            {/* Trust Banner / Fast Customization Strip */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-                <div className="bg-purple-900 rounded-xl p-8 text-white relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
-                    {/* Background pattern */}
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-24 lg:pt-32 lg:pb-40">
+                <div className="lg:w-2/3">
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeUp}
+                        className="mb-8"
+                    >
+                        <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/30">
+                            Government-Ready Rural Housing Solutions
+                        </span>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                            Build Rural Homes <span className="text-blue-400">60% Faster</span> at <span className="text-green-400">30% Lower Cost</span>
+                        </h1>
+                        <p className="text-xl text-slate-300 mb-8 max-w-2xl leading-relaxed">
+                            Modular prefabricated housing solutions designed for DRDA, PMAY-G, and large-scale rural development projects. Engineering-grade quality meets speed.
+                        </p>
 
-                    <div className="relative z-10 mb-8 md:mb-0 md:w-1/3">
-                        <div className="flex items-center mb-4">
-                            <Zap className="mr-3 text-yellow-400 fill-current" />
-                            <h2 className="text-2xl font-bold">Fast Customization</h2>
+                        <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                            <button
+                                onClick={() => document.getElementById('cost-calculator').scrollIntoView({ behavior: 'smooth' })}
+                                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 md:text-lg transition-all shadow-lg hover:shadow-blue-500/30"
+                            >
+                                <Calculator className="mr-2 h-5 w-5" />
+                                Calculate Project Cost
+                            </button>
+                            <button
+                                onClick={() => document.getElementById('download-dpr').scrollIntoView({ behavior: 'smooth' })}
+                                className="inline-flex items-center justify-center px-8 py-4 border border-slate-600 text-base font-medium rounded-lg text-slate-100 bg-slate-800/50 hover:bg-slate-800 md:text-lg transition-all backdrop-blur-sm"
+                            >
+                                <Download className="mr-2 h-5 w-5" />
+                                Download DPR
+                            </button>
                         </div>
-                        <p className="text-purple-200 mb-6 text-sm">Realize your custom precast house ideas fast and easy.</p>
-                        <div className="space-y-2 text-sm text-purple-100 mb-8">
-                            <div className="flex items-center"><ShieldCheck size={16} className="mr-2" /> Low MOQ</div>
-                            <div className="flex items-center"><ShieldCheck size={16} className="mr-2" /> 14-day dispatch</div>
-                            <div className="flex items-center"><ShieldCheck size={16} className="mr-2" /> True to design</div>
-                        </div>
-                        <Link to="/configurator" className="bg-white text-purple-900 px-6 py-2 rounded-full font-bold text-sm hover:bg-purple-50 transition-colors">
-                            Explore Now
-                        </Link>
-                    </div>
+                    </motion.div>
 
-                    {/* Product Cards Row */}
-                    <div className="relative z-10 flex space-x-4 overflow-x-auto pb-4 md:pb-0 w-full md:w-2/3 scrollbar-hide">
-                        {[
-                            { name: "3D Mural Wall", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", price: "₹2,100", moq: "1 pc" },
-                            { name: "Insulated Panel", img: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", price: "₹520", moq: "100 sqft" },
-                            { name: "Self-locking Floor", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", price: "₹250", moq: "50 sqft" },
-                            { name: "Eco Paint", img: "https://images.unsplash.com/photo-1562663474-d7d0d9299861?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", price: "₹1,100", moq: "5 L" }
-                        ].map((item, idx) => (
-                            <div key={idx} className="bg-white rounded-lg p-3 min-w-[160px] text-gray-900 shadow-lg cursor-pointer transform hover:-translate-y-1 transition-transform duration-300">
-                                <div className="h-32 mb-3 rounded overflow-hidden relative">
-                                    <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
-                                    <div className="absolute bottom-1 left-1 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
-                                        Wait 5d
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {stats.map((stat, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
+                                className="bg-slate-800/40 backdrop-blur-md rounded-xl p-4 border border-slate-700/50"
+                            >
+                                <div className="flex items-center mb-2">
+                                    <div className="p-2 bg-blue-500/20 rounded-lg">
+                                        <stat.icon className="h-5 w-5 text-blue-400" />
                                     </div>
                                 </div>
-                                <div className="font-bold text-lg mb-0.5">{item.price}</div>
-                                <div className="text-[10px] text-gray-500 mb-2">MOQ: {item.moq}</div>
-                            </div>
+                                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                                <div className="text-xs text-slate-400 font-medium uppercase tracking-wide">{stat.label}</div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>

@@ -42,6 +42,7 @@ const Navbar = () => {
                                 <NavLink to="/catalog" className={({ isActive }) => isActive ? "text-orange-600 font-medium" : "text-gray-500 hover:text-gray-900"}>{t.catalog}</NavLink>
                                 <NavLink to="/configurator" className={({ isActive }) => isActive ? "text-orange-600 font-medium" : "text-gray-500 hover:text-gray-900"}>{t.configurator}</NavLink>
                                 <NavLink to="/suppliers" className={({ isActive }) => isActive ? "text-orange-600 font-medium" : "text-gray-500 hover:text-gray-900"}>{t.suppliers}</NavLink>
+                                <NavLink to="/specs" className={({ isActive }) => isActive ? "text-orange-600 font-medium" : "text-gray-500 hover:text-gray-900"}>Technical Specs</NavLink>
                             </div>
                         </div>
 
