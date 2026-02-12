@@ -21,6 +21,7 @@ const DownloadDPR = () => {
                             {[
                                 "Executive Summary", "Solution Overview",
                                 "Cost Analysis", "Timeline Comparison",
+                                "Benefits for DRDA & Government",
                                 "Scalability Model", "Environmental Impact"
                             ].map((item, idx) => (
                                 <div key={idx} className="flex items-center text-slate-400 text-sm">
